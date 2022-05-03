@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kodilla.tetsing.forum.ForumTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-10T11:36:09" hostname="DESKTOP-9PSKIUA" time="0.016">
+  <properties/>
+  <testcase name="testCaseUsername()" classname="com.kodilla.tetsing.forum.ForumTestSuite" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
