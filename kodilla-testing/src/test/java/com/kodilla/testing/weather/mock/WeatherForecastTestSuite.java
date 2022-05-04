@@ -64,7 +64,7 @@ public class WeatherForecastTestSuite {
         double result = weatherForecast.calculateMedian();
 
         //Then
-        assertEquals(23.3, result);
+        assertEquals(23.5, result);
 
     }
     @Test
