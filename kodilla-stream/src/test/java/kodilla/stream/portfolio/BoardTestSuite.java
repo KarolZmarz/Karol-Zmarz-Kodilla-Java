@@ -95,7 +95,7 @@ public class BoardTestSuite {
                 })
                 .mapToDouble(Integer:: doubleValue)
                 .average()
-                .getAsDouble();
+                .orElse(0);
 
         //Then
         assertEquals(10, result);
