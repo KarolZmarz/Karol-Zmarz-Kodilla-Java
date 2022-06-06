@@ -1,13 +1,13 @@
 package com.kodilla.good.patterns;
 
-import challenges.Client;
-import challenges.DeliveryDetails;
-import challenges.Order;
-import challenges.ProductOrderService;
-import challenges.cart.Cart;
-import challenges.cart.CartEntry;
-import challenges.products.Games;
-import challenges.products.Shoes;
+import challenges.salesPortal.adressing.Client;
+import challenges.salesPortal.adressing.DeliveryDetails;
+import challenges.salesPortal.adressing.Order;
+import challenges.salesPortal.adressing.ProductOrderService;
+import challenges.salesPortal.adressing.cart.Cart;
+import challenges.salesPortal.adressing.cart.CartEntry;
+import challenges.salesPortal.adressing.products.Games;
+import challenges.salesPortal.adressing.products.Shoes;
 
 public class Main {
 
