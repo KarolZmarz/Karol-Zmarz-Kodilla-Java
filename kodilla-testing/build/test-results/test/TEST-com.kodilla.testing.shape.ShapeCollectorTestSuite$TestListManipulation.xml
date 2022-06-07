@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="List of manipulation tests" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-05-04T19:17:41" hostname="DESKTOP-9PSKIUA" time="0.007">
+  <properties/>
+  <testcase name="testRemoveFigures()" classname="com.kodilla.testing.shape.ShapeCollectorTestSuite$TestListManipulation" time="0.002"/>
+  <testcase name="testGettingFigures()" classname="com.kodilla.testing.shape.ShapeCollectorTestSuite$TestListManipulation" time="0.002"/>
+  <testcase name="testShowFigures()" classname="com.kodilla.testing.shape.ShapeCollectorTestSuite$TestListManipulation" time="0.002"/>
+  <testcase name="testAddFigure()" classname="com.kodilla.testing.shape.ShapeCollectorTestSuite$TestListManipulation" time="0.0"/>
+  <system-out><![CDATA[Preparing to execute test number1
+Preparing to execute test number2
+Preparing to execute test number3
+Preparing to execute test number4
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
