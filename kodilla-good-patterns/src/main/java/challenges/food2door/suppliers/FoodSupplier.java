@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public abstract class FoodSupplier implements Supplier {
+public abstract class FoodSupplier implements challenges.food2door.suppliers.Supplier {
 
     List<Long> processedOrdersId = new ArrayList<>();
 
