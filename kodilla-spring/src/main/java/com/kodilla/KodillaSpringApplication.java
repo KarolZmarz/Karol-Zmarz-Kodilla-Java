@@ -1,13 +1,66 @@
 package com.kodilla;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.kodilla.spring.Square;
+import com.kodilla.spring.shape.Shape;
+import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@SpringBootTest
 public class KodillaSpringApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(KodillaSpringApplication.class, args);
+    @Test
+    void testCircleLoadedIntoContainer() {
+        //Given
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Shape shape = (Shape)context.getBean("circle");
+
+        //When
+        String name = shape.getShapeName();
+
+        //Then
+        assertEquals("This is a circle.", name);
     }
 
+    @Test
+    void testTriangleLoadedIntoContainer() {
+        //Given
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Shape shape = (Shape)context.getBean("triangle");
+
+        //When
+        String name = shape.getShapeName();
+
+        //Then
+        assertEquals("This is a triangle.", name);
+    }
+
+    @Test
+    void testSquareLoadedIntoContainer() {
+        //Given
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Shape shape = context.getBean(Square.class);
+        //When
+        String name = shape.getShapeName();
+        //Then
+        assertEquals("This is a square.", name);
+    }
+    @Test
+    void testShapeLoadedIntoContainer() {
+        //Given
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Shape shape = (Shape)context.getBean("chosenShape");
+
+        //When
+        String name = shape.getShapeName();
+
+        //Then
+        System.out.println("Chosen shape says: " + name);
+    }
 }
