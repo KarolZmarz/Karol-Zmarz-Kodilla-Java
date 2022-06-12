@@ -5,5 +5,5 @@ include 'kodiilla-good-patterns'
 include 'kodilla-spring'
 include 'kodilla-spring-intro'
 include 'kodilla-stream'
-
+include 'kodilla-spring-web'
 
