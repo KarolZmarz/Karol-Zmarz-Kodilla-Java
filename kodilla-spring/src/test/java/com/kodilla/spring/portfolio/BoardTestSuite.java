@@ -27,8 +27,8 @@ public class BoardTestSuite {
 
         //When
         String task1 = board.getToDoList().getTasks().get(0);
-        String task2 = board.getDoneList().getTasks().get(0);
-        String task3 = board.getInProgressList().getTasks().get(0);
+        String task2 = board.getInProgressList().getTasks().get(0);
+        String task3 = board.getDoneList().getTasks().get(0);
 
         //Then
         assertEquals(toDo, task1);
