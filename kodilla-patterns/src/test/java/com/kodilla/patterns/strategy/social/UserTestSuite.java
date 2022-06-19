@@ -25,8 +25,8 @@ public class UserTestSuite {
 
         //Then
         assertEquals("[Twitter Publisher] mainly uses Twitter", karolShare);
-        assertEquals("[Facebook Publisher] mainly uses Facebook", julaShare);
-        assertEquals("[Snapchat Publisher] mainly uses Snapchat", basiaShare);
+        assertEquals("[Facebook Publisher] mainly uses Facebook", basiaShare);
+        assertEquals("[Snapchat Publisher] mainly uses Snapchat", julaShare);
     }
     @Test
     void testIndividualSharingStrategy() {
