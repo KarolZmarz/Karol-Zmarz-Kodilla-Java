@@ -14,22 +14,23 @@ public class TaskList {
     private int id;
     private String listName;
     private String description;
+    private List<Task> tasks = new ArrayList<>();
 
     public TaskList() {
     }
-    private List<Task> tasks = new ArrayList<>();
 
-    public TaskList( String listName, String description) {
+    public TaskList(String listName, String description) {
         this.listName = listName;
         this.description = description;
     }
     @Id
-    @GeneratedValue
     @NotNull
+    @GeneratedValue
     @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
+    @NotNull
     @Column(name = "LISTNAME")
     public String getListName() {
         return listName;
@@ -37,6 +38,18 @@ public class TaskList {
     @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
+    }
+    @OneToMany(
+            targetEntity = Task.class,
+            mappedBy = "taskList",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Task> getTasks() {
+        return tasks;
+    }
+    private void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void setId(int id) {
@@ -50,12 +63,4 @@ public class TaskList {
     public void setDescription(String description) {
         this.description = description;
     }
-    public List<Task> getTasks() {
-        return tasks;
-    }
-    private void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-
 }
