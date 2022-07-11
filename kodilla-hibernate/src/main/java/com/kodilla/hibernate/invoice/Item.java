@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "ITEM")
+@Table(name = "INVOICE_ENTRY")
 public class Item {
 
     private int id;
@@ -44,8 +44,13 @@ public class Item {
     public int getQuantity() {
         return quantity;
     }
+    @Column(name = "VALUE")
+    public BigDecimal getValue() {
+        return value;
+    }
     @ManyToOne(cascade = CascadeType.ALL)
     @Column(name = "INVOICE_NUMBER")
+    private Invoice invoice;
 
     public void setId(int id) {
         this.id = id;

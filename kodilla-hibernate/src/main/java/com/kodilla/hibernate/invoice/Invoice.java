@@ -1,7 +1,7 @@
 package com.kodilla.hibernate.invoice;
 
 import com.sun.istack.NotNull;
-import org.springframework.lang.NonNull;
+import org.hibernate.annotations.NotFound;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class Invoice {
     public int getId() {
         return id;
     }
-    @NonNull
+    @NotFound
     @Column(name = "NUMBER")
     public String getNumber() {
         return number;

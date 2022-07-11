@@ -1,6 +1,7 @@
 package com.kodilla.hibernate.invoice;
 
 import com.sun.istack.NotNull;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ public class Product {
 
 
     private int id;
+    @NonNull
     private String name;
 
     public Product() {
