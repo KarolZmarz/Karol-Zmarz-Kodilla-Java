@@ -6,7 +6,10 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@NamedQuery(
+        name = "Emplyee.retriveEmplyeesByName",
+        query = "FROM Emplyee WHERE lastName = :NAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {

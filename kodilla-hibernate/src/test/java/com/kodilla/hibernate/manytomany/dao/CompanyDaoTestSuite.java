@@ -6,12 +6,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+
 @SpringBootTest
-public class CompanyDaoTestSuite {
+class CompanyDaoTestSuite {
+
     @Autowired
     private CompanyDao companyDao;
+
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -50,12 +56,66 @@ public class CompanyDaoTestSuite {
         assertNotEquals(0, greyMatterId);
 
         //CleanUp
-        //try {
-        //    companyDao.deleteById(softwareMachineId);
-        //    companyDao.deleteById(dataMaestersId);
-        //    companyDao.deleteById(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+    @Test
+    void testCompanyNamedQuery() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company ibmcorp = new Company("IBM corp");
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(ibmcorp);
+        int ibmcorpId = ibmcorp.getId();
+
+        //When
+        int querySize = companyDao.retrieveCompaniesWhichName("IBM").size();
+
+        //Then
+        assertEquals(1, querySize);
+
+        //CleanUp
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(ibmcorpId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+    @Test
+    void testEmployeeNamedQuery() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephenClarckson = new Employee("Stephen", "Clarckson");
+
+        employeeDao.save(johnSmith);
+        int johnSmithId = johnSmith.getId();
+        employeeDao.save(stephenClarckson);
+        int stephenClarcksonId = stephenClarckson.getId();
+
+        //When
+        int querySize = employeeDao.retrieveEmployeesByName("Smith").size();
+
+        //Then
+        assertEquals(1, querySize);
+
+        //CleanUp
+        try {
+            employeeDao.deleteById(johnSmithId);
+            employeeDao.deleteById(stephenClarcksonId);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 }

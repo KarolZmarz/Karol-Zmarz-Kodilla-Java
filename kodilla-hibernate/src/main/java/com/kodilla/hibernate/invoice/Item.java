@@ -49,7 +49,7 @@ public class Item {
         return value;
     }
     @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "INVOICE_NUMBER")
+    @JoinColumn(name = "INVOICE_ID")
     private Invoice invoice;
 
     public void setId(int id) {
