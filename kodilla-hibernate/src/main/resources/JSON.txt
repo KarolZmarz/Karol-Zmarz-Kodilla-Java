@@ -1,0 +1,12 @@
+{
+    "carName":"Nissan",
+    "carModel":"GTR",
+
+    "carSeats":[
+       alcantara,
+       black
+    ]
+
+    "engineCapacity":"3.8 V6"
+
+}

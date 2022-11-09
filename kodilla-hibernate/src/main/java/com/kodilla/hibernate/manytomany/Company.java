@@ -6,11 +6,16 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQuery(
-        name = "Company.retrieveCompaniesWhichName",
-        query = "FROM Company WHERE SUBSTRING(name,1,3) = :STARTS_WITH"
+@NamedNativeQuery(
+        name = "Company.findCompanyByFirst3Letters",
+        query = "SELECT * FROM COMPANIES WHERE LEFT(company_name, 3) = :LETTERS",
+        resultClass = Company.class
 )
-
+@NamedNativeQuery(
+        name = "Company.findCompanyByNameFragment",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE CONCAT('%', :FRAGMENT , '%')",
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

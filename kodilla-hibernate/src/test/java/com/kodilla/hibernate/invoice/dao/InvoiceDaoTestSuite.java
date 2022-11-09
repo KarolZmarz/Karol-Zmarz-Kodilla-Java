@@ -3,14 +3,12 @@ package com.kodilla.hibernate.invoice.dao;
 import com.kodilla.hibernate.invoice.Invoice;
 import com.kodilla.hibernate.invoice.Item;
 import com.kodilla.hibernate.invoice.Product;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class InvoiceDaoTestSuite {
@@ -21,27 +19,31 @@ public class InvoiceDaoTestSuite {
     @Test
     void testInvoiceDaoSave() {
         //Given
-        Product shoes = new Product("Shoes");
-        Product shirts = new Product("Shirts");
+        Product pencil = new Product("Pencil");
+        Product pen = new Product("Pen");
+        Item item1 = new Item(pencil, new BigDecimal(1.5),5);
+        Item item2 = new Item(pen, new BigDecimal(2.2), 3);
 
-        Item shoesItem = new Item(shoes, BigDecimal.valueOf(200), 2);
-        Item shirtsItem = new Item(shirts, BigDecimal.valueOf(50), 3);
+        pencil.getItems().add(item1);
+        pen.getItems().add(item2);
+        item1.setProduct(pencil);
+        item2.setProduct(pen);
 
-        Invoice invoice = new Invoice("1");
-        invoice.getItems().addAll(List.of(shoesItem, shirtsItem));
+        Invoice invoice = new Invoice("777/07/22");
+
+        invoice.getItems().add(item1);
+        invoice.getItems().add(item2);
+        item1.setInvoice(invoice);
+        item2.setInvoice(invoice);
 
         //When
         invoiceDao.save(invoice);
-        int invoiceId = invoice.getId();
+        int id = invoice.getId();
 
         //Then
-        assertEquals(0, invoiceId);
+        Assertions.assertNotEquals(0, id);
 
         //CleanUp
-        try {
-            invoiceDao.deleteById(invoiceId);
-        } catch(Exception e) {
-            //do nothing
-        }
+        invoiceDao.deleteById(id);
     }
 }

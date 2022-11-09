@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -64,58 +66,54 @@ class CompanyDaoTestSuite {
             //do nothing
         }
     }
+
     @Test
-    void testCompanyNamedQuery() {
+    void testNamedQueryFindEmployeeByLastname() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee adamSmith = new Employee("Adam", "Smith");
+
+        //When
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+        employeeDao.save(adamSmith);
+
+        List<Employee> lastName = employeeDao.findEmployeeByLastname("Smith");
+
+        //Then
+        try {
+            assertEquals(2, lastName.size());
+        } finally {
+            //CleanUp
+            employeeDao.deleteAll();
+        }
+    }
+
+    @Test
+    void testNamedNativeQueryFindCompanyByFirst3Letters() {
         //Given
         Company softwareMachine = new Company("Software Machine");
         Company dataMaesters = new Company("Data Maesters");
-        Company ibmcorp = new Company("IBM corp");
+        Company greyMatter = new Company("Grey Matter");
+        Company dataMatter = new Company("Data Matter");
 
+        //When
         companyDao.save(softwareMachine);
-        int softwareMachineId = softwareMachine.getId();
         companyDao.save(dataMaesters);
-        int dataMaestersId = dataMaesters.getId();
-        companyDao.save(ibmcorp);
-        int ibmcorpId = ibmcorp.getId();
+        companyDao.save(greyMatter);
+        companyDao.save(dataMatter);
 
-        //When
-        int querySize = companyDao.retrieveCompaniesWhichName("IBM").size();
+        List<Company> retrieveBy3letters = companyDao.findCompanyByFirst3Letters("dat");
 
         //Then
-        assertEquals(1, querySize);
-
-        //CleanUp
         try {
-            companyDao.deleteById(softwareMachineId);
-            companyDao.deleteById(dataMaestersId);
-            companyDao.deleteById(ibmcorpId);
-        } catch (Exception e) {
-            //do nothing
-        }
-    }
-    @Test
-    void testEmployeeNamedQuery() {
-        //Given
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephenClarckson = new Employee("Stephen", "Clarckson");
-
-        employeeDao.save(johnSmith);
-        int johnSmithId = johnSmith.getId();
-        employeeDao.save(stephenClarckson);
-        int stephenClarcksonId = stephenClarckson.getId();
-
-        //When
-        int querySize = employeeDao.retrieveEmployeesByName("Smith").size();
-
-        //Then
-        assertEquals(1, querySize);
-
-        //CleanUp
-        try {
-            employeeDao.deleteById(johnSmithId);
-            employeeDao.deleteById(stephenClarcksonId);
-        } catch (Exception e) {
-            //do nothing
+            assertEquals(2, retrieveBy3letters.size());
+        } finally {
+            //CleanUp
+            companyDao.deleteAll();
         }
     }
 }

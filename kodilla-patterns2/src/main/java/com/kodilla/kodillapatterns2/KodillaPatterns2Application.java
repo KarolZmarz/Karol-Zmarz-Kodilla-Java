@@ -1,14 +1,13 @@
-package com.kodilla.exception;
+package com.kodilla.kodillapatterns2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KodillaExceptionApplication {
+public class KodillaPatterns2Application {
 
     public static void main(String[] args) {
-
-        SpringApplication.run(KodillaExceptionApplication.class, args);
+        SpringApplication.run(KodillaPatterns2Application.class, args);
     }
 
 }

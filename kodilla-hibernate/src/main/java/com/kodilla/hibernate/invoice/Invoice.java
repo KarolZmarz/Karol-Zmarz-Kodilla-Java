@@ -6,6 +6,7 @@ import org.hibernate.annotations.NotFound;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Table(name = "INVOICES")
 public class Invoice {
@@ -17,21 +18,20 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(@NotNull String number) {
+    public Invoice(String number) {
         this.number = number;
     }
+
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
-    @NotFound
-    @Column(name = "NUMBER")
+
     public String getNumber() {
         return number;
     }
+
     @OneToMany(
             targetEntity = Item.class,
             mappedBy = "invoice",
@@ -41,12 +41,15 @@ public class Invoice {
     public List<Item> getItems() {
         return items;
     }
+
     public void setItems(List<Item> items) {
         this.items = items;
     }
+
     public void setNumber(@NotNull String number) {
         this.number = number;
     }
+
     public void setId(int id) {
         this.id = id;
     }

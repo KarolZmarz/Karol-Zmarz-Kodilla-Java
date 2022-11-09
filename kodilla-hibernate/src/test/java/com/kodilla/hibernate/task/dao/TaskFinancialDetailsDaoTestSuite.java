@@ -14,12 +14,8 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class TaskFinancialDetailsDaoTestSuite {
-
-    TaskDao taskDao;
 
     @Autowired
     private TaskFinancialDetailsDao taskFinancialDetailsDao;
@@ -36,7 +32,7 @@ public class TaskFinancialDetailsDaoTestSuite {
         List<TaskFinancialDetails> resultList = taskFinancialDetailsDao.findByPaid(false);
 
         //Then
-        assertEquals(1, resultList.size());
+        assertEquals(8, resultList.size());
 
         //CleanUp
         taskFinancialDetailsDao.deleteById(id);
