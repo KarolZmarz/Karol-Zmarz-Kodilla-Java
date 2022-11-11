@@ -33,7 +33,6 @@ public class Facade {
             throw new FacadeException(FacadeException.ERR_NO_COMPANY);
         }
     }
-
     public List<Employee> findEmployee(final String lastnameFragment) throws FacadeException {
         boolean wasError = false;
         List<Employee> employees = employeeDao.findEmployeeByLastnameFragment("%" + lastnameFragment + "%");
@@ -45,5 +44,4 @@ public class Facade {
             throw new FacadeException(FacadeException.ERR_NO_EMPLOYEE);
         }
     }
-
 }
